@@ -1,0 +1,68 @@
+/*public class StudentMarkSheet {
+    // Method to calculate total marks
+    public static Integer calculateTotal(Integer[] marks) {
+        Integer total = 0;
+        for(Integer mark : marks) {
+            total += mark;
+        }
+        return total;
+    }
+    
+    // Method to calculate average marks
+    public static Decimal calculateAverage(Integer[] marks) {
+        if(marks.isEmpty()) {
+            return null; // Handling empty mark sheet
+        }
+        Integer total = calculateTotal(marks);
+        return (Decimal)total / marks.size();
+    }
+    
+    // Method to generate grade based on average marks
+    public static String generateGrade(Decimal average) {
+        if(average >= 90) {
+            return 'A';
+        } else if(average >= 80) {
+            return 'B';
+        } else if(average >= 70) {
+            return 'C';
+        } else if(average >= 60) {
+            return 'D';
+        } else {
+            return 'F';
+        }
+    }
+}*/
+public class MarkSheetGenerator {
+	 public static void generateMarkSheet(String studentName, Map<String, Integer> subjectMarks) {
+        Integer totalMarks = 0;
+        Integer numberOfSubjects = subjectMarks.size();
+        
+        // Calculate total marks
+        for (Integer marks : subjectMarks.values()) {
+            totalMarks += marks;
+        }
+
+        // Calculate percentage
+        Decimal percentage = (Decimal)totalMarks / (numberOfSubjects * 100) * 100;
+
+        // Print mark sheet
+        System.debug('Student Name: ' + studentName);
+        System.debug('------------------------------');
+        System.debug('Subject\t\tMarks');
+        System.debug('------------------------------');
+        for (String subject : subjectMarks.keySet()) {
+            System.debug(subject + '\t\t' + subjectMarks.get(subject));
+        }
+        System.debug('------------------------------');
+        System.debug('Total Marks: ' + totalMarks);
+        System.debug('Percentage: ' + percentage + '%');
+        System.debug('------------------------------');
+    }
+}
+
+Map<String, Integer> subjectMarks = new Map<String, Integer>{
+    'Maths' => 85,
+    'Science' => 90,
+    'English' => 80
+};
+MarkSheetGenerator.generateMarkSheet('John Doe', subjectMarks);
